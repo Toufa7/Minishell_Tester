@@ -6,16 +6,16 @@ How To Use a Minishell_Tester :
 
 :one: Go to your Makefile and make sure to not insert any flags for readline only -lreadline :
 
-<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/readline_flags.png?token=GHSAT0AAAAAABYGJ5MAVUTA5IRPAFRI5GCCYYOKYEA" width="1000"/>
+<img src="Ress/readline_flags.png" width="1000"/>
 
 
 :two: Check if there's any rl_replace_line and make sure to comment it :
 
-<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/rl_on.png?token=GHSAT0AAAAAABYGJ5MBTWVNSU4CTGBWZK3YYYOKYDA" width="1000"/>
+<img src="Ress/rl_on.png" width="1000"/>
 
 :three: If you print any of thoses please comment them and that's it:
 
-<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/exit.png?token=GHSAT0AAAAAABYGJ5MAHQT5ETWNQAF44AFUYYOKXOQ" width="1000"/>
+<img src="Ress/exit.png" width="1000"/>
 
 
 # Install :
