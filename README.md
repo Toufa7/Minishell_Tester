@@ -1,6 +1,6 @@
 # Minishell_Tester
 
-Generate one or more random numbers in your custom range, Generate positive or negative random numbers with no repeats.
+A simple Minishell tester
 
 How To Use a Minishell_Tester : 
 
