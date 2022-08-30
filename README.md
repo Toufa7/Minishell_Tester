@@ -2,36 +2,47 @@
 
 Generate one or more random numbers in your custom range, Generate positive or negative random numbers with no repeats.
 
-How To Use a Minishell_Tester;
+How To Use a Minishell_Tester : 
 
-:warning: First don't forget to change permissions to executable
+:one: Go to your Makefile and make sure to not insert any flags for readline only -lreadline :
 
-	chmod +x ./tester.sh
+<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/readline_flags.png?token=GHSAT0AAAAAABYGJ5MBODULJ5J6MANFGJECYYOATIA" width="1000"/>
 
-1. Go to your Makefile and make sure to not insert any flags for readline only -lreadline :
 
-<img src="https://i.ibb.co/bg64rkm/readline-flags.png" width="200"/>
+:two: Check if there's any rl_replace_line and make sure to comment it :
 
-Keep only Readline 
+<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/rl_on.png?token=GHSAT0AAAAAABYGJ5MBZSLNRTVEJWE367ISYYOAWDA" width="1000"/>
 
-2.Then input another number of your choice in the Upper Limit box.
+:three: If you print any of thoses please comment them and that's it:
 
-<img src="https://i.ibb.co/HH4Drx8/Screen-Shot-2022-03-06-at-11-15-01-AM.png" width="300"/>
+<img src="https://raw.githubusercontent.com/Toufa7/Minishell_Tester/main/Ress/exit.png?token=GHSAT0AAAAAABYGJ5MACFKX5K7XA6TMEPD4YYOAZCA" width="1000"/>
 
-3.Once you have your two numbers, click Generate Numbers.
 
-<img src="https://i.ibb.co/m9vBt6N/Screen-Shot-2022-03-06-at-11-15-31-AM.png" width="300"/>
+# Install :
 
-4.Your random number will appear in the Random Number box.
+```
+git clone https://github.com/Toufa7/Minishell_Tester.git
+cd Minishell_Tester
+chmod +x tester.sh
+./tester.sh
+```
 
-<img src="https://i.ibb.co/t80QghL/Screen-Shot-2022-03-06-at-11-19-23-AM.png" width="200"/>
+# Modes :
 
-5.Click on Copy To Clipboard if you want to copy them.
+./tester -ecpuur
 
-<img src="https://i.ibb.co/XV4drHL/Screen-Shot-2022-03-06-at-11-19-44-AM.png" width="200"/>
+-e : Echo
+
+-c : Cd
+
+-p : Pipes
+
+-u : Unset
+
+-r : Errors
+
 
 # A quick demonstration of how it works
 
-<img src="https://media0.giphy.com/media/K4UAh8rgdwZ1x3W9jv/giphy.gif" width="600" height="700" />
 
 feel free to use it and modify it 🤝
