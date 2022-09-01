@@ -44,6 +44,8 @@ chmod +x tester.sh
 
 # A quick demonstration of how it works
 
+<img src="Ress/gif.gif" width="600" height="700" />
+
 
 ## Contributors ✨
 
