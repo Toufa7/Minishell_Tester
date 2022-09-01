@@ -45,4 +45,14 @@ chmod +x tester.sh
 # A quick demonstration of how it works
 
 
+## Contributors ✨
+
+Thanks goes to these wonderful people :
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Toufa7"><img src="https://avatars.githubusercontent.com/u/90482193?v=4" width="100px;" alt=""/><br /><sub><b>P0MS</b>
+    <td align="center"><a href="https://github.com/Abdeljalil-Bouchfar"><img src="https://avatars.githubusercontent.com/u/55533328?v=4" width="100px;" alt=""/><br /><sub><b>Bouchfa</b></sub></a><br /><a href="" title=""></a></td>
+
+
 feel free to use it and modify it 🤝
