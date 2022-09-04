@@ -6,8 +6,6 @@
 #Email         	: abouchfa@student.42.fr                          #
 ###################################################################
 
-# $@ ==> $@ is nearly the same as $*, both meaning "all command line arguments". 
-
 RESET="\033[0m"
 BLACK="\033[30m"
 RED="\033[31m"
