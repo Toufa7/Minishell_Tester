@@ -24,22 +24,20 @@ How To Use a Minishell_Tester :
 git clone https://github.com/Toufa7/Minishell_Tester.git
 cd Minishell_Tester
 chmod +x tester.sh
-./tester.sh
+./tester.sh -options
 ```
 
-# Modes :
+# Synopsis :
 
-./tester -ecpuur
+./Tester [-h|E|p|x|e]
 
--e : Echo
-
--c : Cd
-
--p : Pipes
-
--u : Unset
-
--r : Errors
+ The following options are available:
+ 
+- -h        Help
+- -E        Echo
+- -p        Pipes
+- -x        Exit
+- -e        Export
 
 
 # A quick demonstration of how it works
@@ -47,7 +45,7 @@ chmod +x tester.sh
 <img src="Ress/gif.gif" width="600" height="700" />
 
 
-## Contributors ✨
+## Special Thanks ✨
 
 Thanks goes to these wonderful people :
 
