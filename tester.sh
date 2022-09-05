@@ -6,6 +6,8 @@
 #Email         	: abouchfa@student.42.fr                          #
 ###################################################################
 
+# $@ ==> $@ is nearly the same as $*, both meaning "all command line arguments". 
+
 RESET="\033[0m"
 BLACK="\033[30m"
 RED="\033[31m"
@@ -96,7 +98,7 @@ function	usage()
 	echo "\033[1;37m	Minishell Tester" "${NORMAL} -- A Simple Minishell tester Good Luck 🤞 "
 	echo ""
 	echo '\033[1mSYNOPSIS\033[0m'
-	echo "\033[1;37m	./tester.sh  [-h|E|p|x|e]"
+	echo "\033[1;37m	./tester.sh  [-h|E|u|p|x|e]"
 	echo "${NORMAL}"
 	echo '\033[1mDESCRIPTION\033[0m'
 	echo ""
@@ -105,6 +107,7 @@ function	usage()
 	echo "\033[1;37m	-E	${NORMAL}Echo"
 	echo "\033[1;37m	-p	${NORMAL}Pipes"
 	echo "\033[1;37m	-x	${NORMAL}Exit"
+	echo "\033[1;37m	-u	${NORMAL}Unset"
 	echo "\033[1;37m	-e	${NORMAL}Export"
 }
 
@@ -113,9 +116,25 @@ function	usage()
 function testing()
 {
 	# Put you Minishell's path down here
-	MINISHELL_PATH="../Minishell"
-
-	MINISHELL=$(echo $*	| $MINISHELL_PATH 2>&-)
+	MINISHELL_PATH=".."
+	# Assuming based on the subject your program name is minishell
+	# Simply Checking if you have an executable file called minishell
+	# test -x $MINISHELL_PATH/minishell
+	# if [ $? != 0 ];
+	# then
+	# {
+	# 	echo "Compiling\n"
+	# 	cd $MINISHELL_PATH ; make ; cd $OLDPWD
+	# 	i=1
+	# 	BAR='####################'
+	# 	for i in {1..20};
+	# 	do
+	# 	    echo -ne "\r${BAR:0:$i}"
+	# 	    sleep .1              
+	# 	done
+	# }
+	fi
+	MINISHELL=$(echo $*	| $MINISHELL_PATH/minishell 2>&-)
 	MINISHELL_EXIT_STATUS=$?
 	BASH=$(echo $* | bash 2>&-)
 	BASH_EXIT_STATUS=$?
@@ -125,7 +144,7 @@ function testing()
 		let 	"i++"
 		printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
 		printf 	"$CYAN\"$*\"	$RESET"
-		sleep 1
+		sleep 0.3
 	}
 	else
 	{
@@ -199,9 +218,11 @@ if  [[ $1 = "-E" ]]; then
 	testing echo $abc$
 	testing eChO "\"$"\"	
 	testing echo \'\'$\'\'
-	testing echo "$_" #Last Command actually not required
+	testing echo "$_"
+	testing echo 					ls
 	testing echo '$1337' 
-	testing echo "$0" # Not pretty much work check it by ur self sorry 
+	testing echo "\$1337"
+	testing echo "$0"
 	testing echo "$0"
 	testing 'e'"c"'h'o	"POMS"
 	testing echo echo
@@ -252,7 +273,6 @@ if  [[ $1 = "-E" ]]; then
 	testing echo "${NOT_EXIT} POMS"		
 	testing echo "${USER} POMS"		
 	testing echo "$USER"		
-	testing echo 'The only true wisdom is in knowing you know nothing.\nSocrates' >> /tmp/file.txt
 	testing echo $USER=POMS 
 	testing echo $USER
 	testing echo $?	
@@ -261,7 +281,7 @@ if  [[ $1 = "-E" ]]; then
 	testing echo "Nothing" "Nothing$USER_ANA" ... "$USER.ANA"
 	testing echo "Nothing" "Nothing$USER9WHO" ... "$USER-9"
 	testing echo $PWD
-	grade 68
+	grade 67
 }  
 fi                            
 if  [[ $1 = "-p" ]];
@@ -270,7 +290,6 @@ then
 	printf "$PIPES"
 
 	testing "ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls|ls"
-	testing "env ls"
 	testing "env | grep \"_=\""
 	testing "env | grep \"SHLVL\""
 	testing "echo oui | cat -e"
@@ -295,9 +314,10 @@ then
 	testing "whereis ls | cat -e | cat -e > test		"
 	testing "echo test | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e"
 	testing "ls -la | grep ".""
-	testing "whereis grep > tmp/file" # Seg Fault use fsanitizer
-	testing "ls -la > tmp/file"
-	grade 28
+	testing "whereis grep > tmp/check" # Seg Fault use fsanitizer
+	testing "whereis grep > /tmp/check" # Seg Fault use fsanitizer
+	testing "ls -la > tmp/check"
+	grade 27
 }
 fi
 
@@ -417,5 +437,81 @@ if [[ $1 = "-e" ]]; then
 	testing export TES\~T=123
 	testing export TEST+=100
 	grade 59
+}
+fi
+if [[ $1 = "-u" ]]; then
+{
+	printf "%s$UNSET\n"
+
+	testing unset doesntexist
+	testing unset PWD
+	testing unset PWD
+	testing unset OLDPWD
+	testing unset PATH
+	testing unset PATH
+	testing unset PATH
+	testing unset TES\\\\T
+	testing unset TES.T
+	testing unset TES+T
+	testing unset TES=T
+	testing unset TES}T
+	testing unset TES{T
+	testing unset TES-T
+	testing unset -TEST
+	testing unset _TEST
+	testing unset TES_T
+	testing unset TEST_
+	testing unset TE*ST
+	testing unset TES#T
+	testing unset TES@T
+	testing unset TES!T
+	testing unset TES$?T
+	testing unset ============
+	testing unset +++++++
+	testing unset ________
+	testing unset export
+	testing unset echo
+	testing unset pwd
+	testing unset cd
+	testing unset unset
+	testing unset sudo
+	testing unset TES^T
+	testing unset TES!T
+	testing unset TES\~T
+
+	grade 35
+}
+fi
+
+if [[ $1 = "-c" ]]; then
+{
+	printf "%s$CD\n"
+
+	testing cd 							
+	testing cd .. 						
+	testing cd . 						
+	testing cd /Users 					
+	testing cd // 						
+	testing cd '//' 					
+	testing cd ////// 					
+	testing cd ./././ 					
+	testing cd / 						
+	testing cd '/etc' 					
+	testing cd '/var' 					
+	testing cd "$PWD/prompt"			
+	testing cd "doesntexist"			
+	testing cd "doesntexist" 2>/dev/null
+	testing cd ../../..
+	testing cd ..						
+	testing cd ..						
+	testing cd ?						
+	testing cd +						
+	testing cd _						
+	testing cd bark bark				
+	testing cd '/'						
+	testing cd $PWD/file_tests			
+	testing cd ../$NONEXIT/Builtins
+
+	grade 35
 }
 fi
