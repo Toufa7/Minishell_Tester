@@ -7,7 +7,7 @@
 
 
 # Put your Minishell's path down here
-MINISHELL_PATH="../minishell"
+MINISHELL_PATH=".."
 
 RESET="\033[0m"
 BLACK="\033[30m"
@@ -151,10 +151,10 @@ function testing()
 	fi
 
 	# Saving Minishell's ouput in a variable
-	MINISHELL=$(echo $*	| $MINISHELL_PATH/minishell 2>&-)
+	MINISHELL=$(echo $1	| $MINISHELL_PATH/minishell 2>&-)
 	# Saving Minishell's exit status the sane for the reference our bash
 	MINISHELL_EXIT_STATUS=$?
-	BASH=$(echo $* | bash 2>&-)
+	BASH=$(echo $1 | bash 2>&-)
 	BASH_EXIT_STATUS=$?
 
 	# If your output and the exit status is similar to the bash so your good [OK]
@@ -165,16 +165,15 @@ function testing()
 		printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
 		if [[ -n $2 ]];
 		then
-			printf 	"$CYAN   $2	 $RESET"
+			printf 	"$CYAN   $2 $RESET && $CYAN $1	 $RESET"
 		else
 			printf 	"$CYAN   $1	 $RESET"
 		fi
 
-		echo "\n"
-		printf	$RESET"	Minishell output  	: $MINISHELL	$RESET\n"
-		echo "\n"
-		printf	$RESET"	Bash output       	: $BASH		$RESET\n"
-		echo "\n"
+		# echo "\n"
+		# printf	$RESET"	Minishell output  	: $MINISHELL	$RESET\n"
+		# printf	$RESET"	Bash output       	: $BASH		$RESET\n"
+		# echo "\n"
 
 	}
 	# Else I'm telling you where the error was in the output or the exit status [KO]
@@ -238,6 +237,63 @@ function grade()
 		echo "\n"
 	fi
 	i=0
+}
+
+
+function checking_errors()
+{
+	MINISHELL=$(echo $1	| $MINISHELL_PATH/minishell 2>&1)
+	MINISHELL_EXIT_STATUS=$?
+	BASH=$(echo $1 | bash 2>&1)
+	BASH_EXIT_STATUS=$?
+
+	error=$1
+	if [[ "$MINISHELL" == *"$error"* ]] && [[ "$BASH" == *"$error"* ]] && [[ "$MINISHELL_EXIT_STATUS" == "$BASH_EXIT_STATUS" ]] ;
+	then
+	{
+		let 	"i++"
+		printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
+		if [[ -n $2 ]];
+		then
+			printf 	"$CYAN   $2 $RESET && $CYAN $1	 $RESET"
+		else
+			printf 	"$CYAN   $1	 $RESET"
+		fi
+	}
+	else
+	{
+		printf "$RED%s""\033[1m[KO]\033[0m	${NORMAL}"$RESET
+		if [[ -n $2 ]];
+		then
+			printf 	"$CYAN   $1	 $RESET"
+		else
+			printf 	"$CYAN   $2	 $RESET"
+		fi
+	}
+	fi
+	if [ "$MINISHELL" != "$error" ];
+    then
+    {
+		echo 	"\n"
+		echo 	$RED$SEPARATOR$RESET
+		printf	$RED"	Minishell output  	: $MINISHELL	$RESET\n"
+		printf	$GREEN"	Bash output       	: $BASH		$RESET\n"
+		echo	$RED$SEPARATOR$RESET
+		sleep 2
+    }
+	fi
+	if [ "$MINISHELL_EXIT_STATUS" != "$BASH_EXIT_STATUS" ];
+	then
+	{
+		echo
+		printf	$RED"	Minishell exit status   => $RED$MINISHELL_EXIT_STATUS$RESET"
+		echo
+		printf	$GREEN"	Bash exit status        => $GREEN$BASH_EXIT_STATUS$RESET\n"
+		sleep 2
+	}
+	fi
+	sleep 0.2
+	echo
 }
 
 
@@ -420,60 +476,62 @@ fi
 if [[ $1 = "-e" ]]; then
 {
 	printf "%s$EXPORT\n"
-	export TEST=test
-	testing "export | grep TEST" "export TEST=test"
-	export x=1 x=2 x=3 x=4
-	testing "export | grep x=" "export x=1 x=2 x=3 x=4"
-	export x="| > < >> << ? $ ls"
-	testing "export | grep x=" "export x=\"| > < >> << ? $ ls\""
-	# testing "env | grep \"_="\"
-	# testing "export | grep \"SHLVL"\""
-	# testing "export | grep \"OLDPWD"\""
-	# testing "export | grep \"PWD"\"	
-	# testing export $?
-	# testing export TEST=		
-	# testing export TEST=123		
-	# testing export ___TEST=123	
-	# testing export --TEST=123	
-	# testing export ""=""		
-	# testing export ''=''		
-	# testing export "="="="		
-	# testing export '='='='		
-	# testing export TE\\\ST=100	
-	# testing export TE-ST=100	
-	# testing export -TEST=100	
-	# testing export TEST-=100	
-	# testing export _TEST=100	
-	# testing export TEST
-	# testing export ==========	
-	# testing export 1TEST=		
-	# testing export TEST
-	# testing export ""=""		
-	# testing export TES=T=""		
-	# testing export TE+S=T=""	
-	# testing export TES\\\\T=123
-	# testing export TES.T=123
-	# testing export TES\\\$T=123
-	# testing export TES\\\\T
-	# testing export TES.T=123
-	# testing export TES+T=123
-	# testing export TES=T=123
-	# testing export TES}T=123
-	# testing export TES{T=123
-	# testing export TES-T=123
-	# testing export -TEST=123
-	# testing export _TEST=123
-	# testing export TES_T=123
-	# testing export TEST_=123
-	# testing export TE*ST=123
-	# testing export TES#T=123
-	# testing export TES@T=123
-	# testing export TES!T=123
-	# testing export TES$?T=123
-	# testing export =============123
-	# testing export +++++++=123
-	# testing export ________=123
-	# testing export export
+
+	export variable=randomtext
+	testing "export | grep variable" "export variable=randomtext"
+
+
+	export var_=0 var_=1 var_=2 var_=3
+	testing "export | grep var_" "export var_=0 var_=1 var_=2 var_=3"
+
+	export value=1 export value+=2 export value+=3 
+	testing "export | grep value" "export value=1 export value+=2 export value+=3"
+
+	testing "export | grep \"SHLVL"\"
+
+	testing "export | grep \"PWD"\"
+
+	export bensouda=
+	testing "export | grep bensouda" "export bensouda="
+
+	export Nothing
+	testing "export | grep Nothing" "export Nothing"
+
+	export export
+	testing "export | grep export" "export export"
+
+	export _____=abc
+	testing "export | grep _____" "export _____=abc"
+
+	export __ben_souda_=Herewego
+	testing "export | grep __ben_souda_" "export __ben_souda_=Herewego"
+
+	export Nothing=0=""
+	testing "export | grep Nothing" "export Nothing=0="""
+
+	export exitstatus$?=true
+	testing "export | grep exitstatus" "export exitstatus\$\?=true"
+
+	checking_errors "export --TEST=123" "invalid option"
+	checking_errors "export ""=""" "not a valid identifier"
+	checking_errors "export ''=''		" "not a valid identifier"
+	checking_errors "export "="="="		" "not a valid identifier"
+	checking_errors "export '='='='		" "not a valid identifier"
+	checking_errors "export TE\\\ST=100	" "not a valid identifier"
+	checking_errors "export TE-ST=100	" "not a valid identifier"
+	checking_errors "export TEST-=100	" "not a valid identifier"
+	checking_errors "export -TEST=100	" "invalid option"
+	checking_errors "export ==========abc	" "not a valid identifier"
+	checking_errors "export 1TEST=		" "not a valid identifier"
+	checking_errors "export TE+S=T=""" "not a valid identifier"
+	checking_errors "export me!me=123" "not a valid identifier"
+	checking_errors "export TES.T=123" "not a valid identifier"
+	checking_errors "export TES}T=123" "not a valid identifier"
+	checking_errors "export TES-T=123" "not a valid identifier"
+	checking_errors "export TE*ST=123" "not a valid identifier"
+	checking_errors "export TES#T=123" "not a valid identifier"
+	checking_errors "export TES@T=123" "not a valid identifier"
+	checking_errors "export +++++++=123" "not a valid identifier"
 	# testing export echo
 	# testing export pwd
 	# testing export cd
@@ -484,7 +542,7 @@ if [[ $1 = "-e" ]]; then
 	# testing export TES!T=123
 	# testing export TES\~T=123
 	# testing export TEST+=100
-	grade 59
+	# grade 11
 }
 fi
 if [[ $1 = "-u" ]]; then
