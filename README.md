@@ -45,14 +45,5 @@ chmod +x tester.sh
 <img src="Ress/gif.gif" width="600" height="700" />
 
 
-## Special Thanks ✨
-
-Thanks goes to these wonderful people :
-
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/YassineEddyb"><img src="https://avatars.githubusercontent.com/u/75098144?v=4" width="100px;" alt=""/><br /><sub><b>Oshen</b>
-    <td align="center"><a href="https://github.com/Abdeljalil-Bouchfar"><img src="https://avatars.githubusercontent.com/u/55533328?v=4" width="100px;" alt=""/><br /><sub><b>Bouchfa</b></sub></a><br /><a href="" title=""></a></td>
-
 
 feel free to use it and modify it 🤝
