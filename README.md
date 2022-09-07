@@ -17,6 +17,10 @@ How To Use a Minishell_Tester :
 
 <img src="Ress/exit.png" width="1000"/>
 
+:four: Put your path in here:
+
+<img src="Ress/path.png" width="1000"/>
+
 
 # Install :
 
@@ -42,8 +46,17 @@ chmod +x tester.sh
 
 # A quick demonstration of how it works
 
-<img src="Ress/gif.gif" width="600" height="700" />
+<img src="Ress/demonstration.gif" width="600" height="700" />
 
+## Thanks ✨
+
+Thanks goes to these people :
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/YassineEddyb"><img src="https://avatars.githubusercontent.com/u/75098144?v=4" width="100px;" alt=""/><br /><sub><b>Oshen</b>
+  </tr>
+</table>
 
 
 feel free to use it and modify it 🤝
