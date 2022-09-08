@@ -41,15 +41,18 @@ chmod +x tester.sh
 
 # Synopsis :
 
-./Tester [-h|E|p|x|e]
+./tester.sh  [-h|--help|a|E|e|p|u|x]
 
- The following options are available:
- 
-- -h        Help
-- -E        Echo
-- -p        Pipes
-- -x        Exit
-- -e        Export
+* The following options are available:
+
+    * h or --help    Help      
+    * a              All       
+    * c              Cd       
+    * E              Echo       
+    * e              Export      
+    * p              Pipes       
+    * u              Unset      
+    * x              Exit
 
 
 # A quick demonstration of how it works
