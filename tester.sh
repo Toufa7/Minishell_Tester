@@ -112,7 +112,7 @@ function	help()
 	echo "\033[1;37m	-p		${NORMAL}Pipes"
 	echo "\033[1;37m	-u		${NORMAL}Unset"
 	echo "\033[1;37m	-x		${NORMAL}Exit"
-	echo "\033[1;37m	-y		${NORMAL}Checklist (Page Correction)"
+	# echo "\033[1;37m	-y		${NORMAL}Checklist (Page Correction)"
 	echo "\n"
 	echo "BSD	0.1			Gettimeofday		  BSD	0.1"
 }
@@ -165,7 +165,7 @@ function testing()
 		printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
 		if [[ -n $2 ]];
 		then
-			printf 	"$CYAN   $2 $RESET && $CYAN $1	 $RESET"
+			printf 	"$CYAN   $2 $RESET	&&	$CYAN $1	 $RESET"
 		else
 			printf 	"$CYAN   $1	 $RESET"
 		fi
@@ -249,48 +249,38 @@ function checking_errors()
 
 	error=$2
 	if [[ "$MINISHELL" == *"$error"* ]] && [[ "$BASH" == *"$error"* ]] && [[ "$MINISHELL_EXIT_STATUS" == "$BASH_EXIT_STATUS" ]] ;
-	then
-	{
-		let 	"i++"
-		printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
-		if [[ -n $2 ]];
 		then
-			printf 	"$CYAN   $2 $RESET && $CYAN $1	 $RESET"
-		else
+		{
+			let 	"i++"
+			printf	"$GREEN%s""\033[1m[OK]\033[0m	${NORMAL}"$RESET
 			printf 	"$CYAN   $1	 $RESET"
-		fi
-	}
+		}
 	else
-	{
-		printf "$RED%s""\033[1m[KO]\033[0m	${NORMAL}"$RESET
-		if [[ -n $2 ]];
-		then
+		{
+			printf "$RED%s""\033[1m[KO]\033[0m	${NORMAL}"$RESET
 			printf 	"$CYAN   $1	 $RESET"
-		else
-			printf 	"$CYAN   $2	 $RESET"
+		}
 		fi
-	}
-	fi
-	if [ "$MINISHELL" != "$error" ];
-    then
-    {
-		echo 	"\n"
-		echo 	$RED$SEPARATOR$RESET
-		printf	$RED"	Minishell output  	: $MINISHELL	$RESET\n"
-		printf	$GREEN"	Bash output       	: $BASH		$RESET\n"
-		echo	$RED$SEPARATOR$RESET
-		sleep 2
-    }
-	fi
-	if [ "$MINISHELL_EXIT_STATUS" != "$BASH_EXIT_STATUS" ];
-	then
-	{
-		echo
-		printf	$RED"	Minishell exit status   => $RED$MINISHELL_EXIT_STATUS$RESET"
-		echo
-		printf	$GREEN"	Bash exit status        => $GREEN$BASH_EXIT_STATUS$RESET\n"
-		sleep 2
-	}
+		if [[ ! $MINISHELL =~ $error ]];
+    	then
+    	{
+			echo 	"\n"
+			echo 	$RED$SEPARATOR$RESET
+			printf	$RED"	Minishell output  	: $MINISHELL	$RESET\n"
+			printf	$GREEN"	Bash output       	: $BASH		$RESET\n"
+			echo	$RED$SEPARATOR$RESET
+			sleep 2
+    	}
+		fi
+		if [ "$MINISHELL_EXIT_STATUS" != "$BASH_EXIT_STATUS" ];
+		then
+		{
+			echo
+			printf	$RED"	Minishell exit status   => $RED$MINISHELL_EXIT_STATUS$RESET"
+			echo
+			printf	$GREEN"	Bash exit status        => $GREEN$BASH_EXIT_STATUS$RESET\n"
+			sleep 2
+		}
 	fi
 	sleep 0.2
 	echo
@@ -512,39 +502,53 @@ if [[ $1 = "-e" ]]; then
 	export exitstatus$?=true
 	testing "export | grep exitstatus" "export exitstatus\$\?=true"
 
+	export val\ue=100
+	testing "export | grep val\ue" "export val\\\lue=100"
+
+	echo "Checking if you return the error as the bash does"
+
 	checking_errors "export --TEST=123" "invalid option"
+
 	checking_errors "export ""=""" "not a valid identifier"
+
 	checking_errors "export ''=''		" "not a valid identifier"
+
 	checking_errors "export "="="="		" "not a valid identifier"
+
 	checking_errors "export '='='='		" "not a valid identifier"
-	checking_errors "export TE\\\ST=100	" "not a valid identifier"
+
 	checking_errors "export TE-ST=100	" "not a valid identifier"
+
 	checking_errors "export TEST-=100	" "not a valid identifier"
+
 	checking_errors "export -TEST=100	" "invalid option"
+
 	checking_errors "export ==========abc	" "not a valid identifier"
+
 	checking_errors "export 1TEST=		" "not a valid identifier"
+
 	checking_errors "export TE+S=T=""" "not a valid identifier"
+
 	checking_errors "export me!me=123" "not a valid identifier"
+
 	checking_errors "export TES.T=123" "not a valid identifier"
+
 	checking_errors "export TES}T=123" "not a valid identifier"
+
 	checking_errors "export TES-T=123" "not a valid identifier"
+
 	checking_errors "export TE*ST=123" "not a valid identifier"
+
 	checking_errors "export TES#T=123" "not a valid identifier"
+
 	checking_errors "export TES@T=123" "not a valid identifier"
+
 	checking_errors "export +++++++=123" "not a valid identifier"
-	# testing export echo
-	# testing export pwd
-	# testing export cd
-	# testing export export
-	# testing export unset
-	# testing export sudo
-	# testing export TES^T=123
-	# testing export TES!T=123
-	# testing export TES\~T=123
-	# testing export TEST+=100
-	# grade 11
+
+	grade 32
 }
 fi
+
 if [[ $1 = "-u" ]]; then
 {
 	printf "%s$UNSET\n"
