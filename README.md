@@ -12,22 +12,25 @@ $$\textcolor{Red}{\text{[KO]  }}{\text{Means one of your output or the exit stat
 
 How To Use a Minishell_Tester : 
 
-:one: Go to your Makefile and make sure to not insert any flags for readline only -lreadline :
+:one: Put your path in here:
+
+<img src="Ress/path.png" width="1000"/>
+
+
+:two: Go to your Makefile and make sure to not insert any flags for readline only -lreadline :
 
 <img src="Ress/readline_flags.png" width="1000"/>
 
 
-:two: Check if there's any rl_replace_line and make sure to comment it :
+:three: Check if there's any rl_replace_line and make sure to comment it :
 
 <img src="Ress/rl_on.png" width="1000"/>
 
-:three: If you print any of thoses please comment them and that's it:
+:four: If you print any of thoses please comment them and that's it:
 
 <img src="Ress/exit.png" width="1000"/>
 
-:four: Put your path in here:
 
-<img src="Ress/path.png" width="1000"/>
 
 
 # Install :
@@ -59,15 +62,5 @@ chmod +x tester.sh
 
 <img src="Ress/demonstration.gif" width="600" height="700" />
 
-## Thanks ✨
 
-Thanks goes to these people :
-
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/YassineEddyb"><img src="https://avatars.githubusercontent.com/u/75098144?v=4" width="100px;" alt=""/><br /><sub><b>Oshen</b>
-  </tr>
-</table>
-
-
-feel free to use it and modify it 🤝
+🤝 Feel free to use it, contribute and add your crazy tests 
