@@ -553,6 +553,45 @@ if [[ $1 = "-u" ]]; then
 {
 	printf "%s$UNSET\n"
 
+	# All Env Variables
+	# {
+	# 	TERM_PROGRAM
+	# 	TERM
+	# 	SHELL
+	# 	TMPDIR
+	# 	Apple_PubSub_Socket_Render
+	# 	TERM_PROGRAM_VERSION
+	# 	ZDOTDIR
+	# 	ORIGINAL_XDG_CURRENT_DESKTOP
+	# 	MallocNanoZone
+	# 	ZSH
+	# 	USER
+	# 	COMMAND_MODE
+	# 	SSH_AUTH_SOCK
+	# 	__CF_USER_TEXT_ENCODING
+	# 	PAGER
+	# 	LSCOLORS
+	# 	PATH
+	# 	PWD
+	# 	LANG
+	# 	VSCODE_GIT_ASKPASS_EXTRA_ARGS
+	# 	XPC_FLAGS
+	# 	XPC_SERVICE_NAME
+	# 	VSCODE_INJECTION
+	# 	SHLVL
+	# 	HOME
+	# 	VSCODE_GIT_ASKPASS_MAIN
+	# 	LESS
+	# 	LOGNAME
+	# 	HOME_BREW
+	# 	VSCODE_GIT_IPC_HANDLE
+	# 	VSCODE_GIT_ASKPASS_NODE
+	# 	GIT_ASKPASS
+	# 	SECURITYSESSIONID
+	# 	COLORTERM
+	# 	_
+	# }
+
 	testing unset doesntexist
 	testing unset PWD
 	testing unset PWD
