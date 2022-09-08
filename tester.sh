@@ -286,8 +286,7 @@ function checking_errors()
 	echo
 }
 
-
-if  [ $1 = "-h" ] || [ $1 = "--help" ];
+if [[ $1 = "-h" ]] || [[ $1 == "--help" ]] || [[ $# -eq 0 ]];
 then
 {
 	# Usage
@@ -669,73 +668,76 @@ if [[ $1 = "-a" ]]; then
 {
 	printf "%s$ECHO\n"
 
-	testing echo \'$\'
-	testing echo $abc$
-	testing eChO "\"$"\"	
-	testing echo \'\'$\'\'
-	testing echo "$_"
-	testing echo 					ls
-	testing echo '$1337' 
-	testing echo "\$1337"
-	testing echo "$0"
-	testing echo "$0"
-	testing 'e'"c"'h'o	"POMS"
-	testing echo echo
-	testing echo "			a"	
-	testing eCHO ''	
-	testing echo $	
-	testing echo $ $
-	testing echo	
-	testing echo wow		
-	testing echo Hello World	
-	testing echo "Salam Alikoum"		
-	testing echo Salam Alikoum		
-	testing echo 'Salam Alikoum'		
-	testing echo -n Salam Alikoum		
-	testing echo -nn Salam Alikoum	
-	testing echo -n -n -n Salam Alikoum
-	testing echo "-n" Salam Alikoum	
-	testing echo -n "-n" Salam Alikoum	
-	testing echo "-nnnn" Salam Alikoum
-	testing echo "-nnnn" -n Salam Alikoum
-	testing echo "-n -n -n"-n Salam Alikoum		
-	testing echo "-n '-n'" Salam Alikoum
-	testing echo $string" | sed -e "s/^$prefix//" -e "s/$suffix$//
-	testing echo $USER
-	testing echo "$USER"		
-	testing echo "'$USER'"		
-	testing echo " '$USER' "	
-	testing echo text"$USER"	
-	testing echo text"'$USER'" ' $USER '	
-	testing echo "Bensouda"   "$USER"    "$USER"
-	testing echo '              $USER          '		
-	testing echo               Bensouda "$USER"            "$USER"Bensouda	
-	testing echo ''''''''''$USER''''''''''	
-	testing echo """"""""$USER""""""""		
-	testing echo $USER'$USER'Once a gunner always a gunner $USER COYG      $USER ''	
-	testing echo $USER '' $USER $USER '' $USER '' $USER -n $USER	
-	testing echo "$USER""$USER""$USER"		
-	testing echo	guess whos back "$USER"
-	testing echo '"'$USER'"'
-	testing echo $USER " "		
-	testing echo "$USER""Users/$USER/file""'$USER'"'$USER'
-	testing echo "$USER$USER$USER"
-	testing echo '$USER'"$USER"'$USER'		
-	testing echo '"$USER"''$USER'"""$USER"	
-	testing echo " $USER  "'$PWD'
-	testing echo " $USER  \$ "'$PWD'		
-	testing echo $USER=4		
-	testing echo "${NOT_EXIT} POMS"		
-	testing echo "${USER} POMS"		
-	testing echo "$USER"		
-	testing echo $USER=POMS 
-	testing echo $USER
-	testing echo $?	
-	testing echo $PWD/file		
-	testing echo "$PWD/file"	
-	testing echo "Nothing" "Nothing$USER_ANA" ... "$USER.ANA"
-	testing echo "Nothing" "Nothing$USER9WHO" ... "$USER-9"
-	testing echo $PWD
+	testing "echo '$'"
+	testing "echo $	"
+	testing "echo $\"$\"$ '$'$'$'"
+	testing "echo ''$''"
+	testing "echo \$abc$"
+	testing "eChO \"\"$\"\"	"
+	testing "echo \"\$_\"" # As long as you return the last command your good to go
+	testing "echo	ls"
+	testing "echo '\$1337' "
+	testing "echo \"\$1337\""
+	testing "echo \"\$0\""
+	testing "'e'\"c\"'h'o	\"POMS\""
+	testing "echo echo"
+	testing "echo \"\t a\""
+	testing "eCHO ''	"
+	testing "echo	"
+	testing "echo '\$USER'''"
+	testing "echo '\$USER'"
+	testing "echo \"\$USER|'\$USER'\""
+	testing "echo مرحبا بالعالم	"
+	testing "echo \"Salam Alikoum\"		"
+	testing "echo Salam Alikoum		"
+	testing "echo 'Salam Alikoum'		"
+	testing "echo -n Salam Alikoum		"
+	testing "echo -nn Salam Alikoum	"
+	testing "echo -n -n -n Salam Alikoum"
+	testing "echo \"-n\" Salam Alikoum	"
+	testing "echo -n \"-n\" Salam Alikoum	"
+	testing "echo \"-nnnn\" Salam Alikoum"
+	testing "echo \"-nnnn\" -n Salam Alikoum"
+	testing "echo \"-n -n -n\"-n Salam Alikoum		"
+	testing "echo \"-n '-n'\" Salam Alikoum"
+	testing "echo \$string\" | sed -e \"s/^\$prefix//\" -e \"s/\$suffix$//"
+	testing "echo \$USER"
+	testing "echo \"\$USER\"		"
+	testing "echo \"'\$USER'\"		"
+	testing "echo \" '\$USER' \"	"
+	testing "echo text\"\$USER\"	"
+	testing "echo text\"'\$USER'\" ' \$USER '"
+	testing "echo \"Bensouda\"   \"\$USER\"    \"\$USER\""
+	testing "echo '              \$USER          '		"
+	testing "echo               Bensouda \"\$USER\"            \"\$USER\"Rja F Allah	"
+	testing "echo ''''''''''\$USER.ME''''''''''	"
+	testing "echo \"\"\"\"\"\"\"\"\$USER\"\"\"\"\"\"\"\"		"
+	testing "echo \$USER'\$USER'Once a gunner always a gunner \$USER COYG      \$USER ''	"
+	testing "echo \$USER '' \$USER \$USER '' \$USER '' \$USER -n \$USER	"
+	testing "echo \"\$USER\"\"\$USER\"\"\$USER\"		"
+	testing "echo	guess whos back \"\$USER\""
+	testing "echo '"'$USER'"'"
+	testing "echo \$USER \" \"		"
+	testing "echo \"\$USER\"\"Users/\$USER/file\"\"'\$USER'\"'\$USER'"
+	testing "echo \"\$USER\$USER\$USER\""
+	testing "echo '\$USER'\"\$USER\"'\$USER'		"
+	testing "echo '\"\$USER\"''\$USER'\"\"\"\$USER\"	"
+	testing "echo \" \$USER  \"'\$PWD'"
+	testing "echo \" \$USER  \$ \"'\$PWD'		"
+	testing "echo \$USER=4		"
+	testing "echo \"\$NOT_EXIT POMS\"		"
+	testing "echo \"\$USER POMS\"		"
+	testing "echo \"\$USER\"		"
+	testing "echo \$USER=POMS "
+	testing "echo \$USER"
+	testing "echo \$?	"
+	testing "echo \$PWD/file		"
+	testing "echo \"\$PWD/file\"	"
+	testing "echo \"Nothing\" \"Nothing\$USER_ANA\" ... \"\$USER.ANA\""
+	testing "echo \"Nothing\" \"Nothing\$USER9WHO\" ... \"\$USER-9\""
+	testing "echo \$PWD\$PWD_FIL\$PWD.HERE"
+	testing "echo \$\"USER\""
+	testing "echo \$\"\""
 
 
 	printf "$PIPES"
@@ -771,112 +773,130 @@ if [[ $1 = "-a" ]]; then
 
 		printf "%s$EXIT\n"
 
-	testing exit 1337 1337
-	testing exit -1337 -24
-	testing exit 1337
-	testing exit 1337 53 68
-	testing exit 259
-	testing exit -12030
-	testing exit --1239312
-	testing exit ++++1203020103
-	testing exit +0
-	testing exit ++++++0
-	testing exit -----0
-	testing exit azerty
-	testing exit Benguerir
-	testing exit a
-	testing exit z
-	testing exit "1"
-	testing exit "2"
-	testing exit "+102"
-	testing exit "1230"
-	testing exit "+++1230"
-	testing exit "1"23
-	testing exit "2"32"32"
-	testing exit "'1337'"
-	testing exit '1337'"1337"1337
-	testing exit +'1337'"1337"1337
-	testing exit -'1337'"1337"1337
-	testing exit 922337203685477
-	testing exit 922337203685477
-	testing exit -4
-	testing exit 1
-	testing exit -1
-	testing exit 1337
-	testing exit 0
-	testing exit --000
-	testing exit +++++++000
-	testing exit ++++3193912939
-	testing exit ---31232103012
-	testing exit "Oh Darling"
-	testing exit echo
-	testing exit cd ..
-	testing exit 0 0
-	testing exit 1337 1337 1337 1337 1337
-	testing exit echo Bensouda
-	testing exit exit exit exit exit exit
+	testing "exit 1337 1337"
+	testing "exit -1337 -24"
+	testing "exit 1337"
+	testing "exit 1337 53 68"
+	testing "exit 259"
+	testing "exit -12030"
+	testing "exit --1239312"
+	testing "exit ++++1203020103"
+	testing "exit +0"
+	testing "exit ++++++0"
+	testing "exit -----0"
+	testing "exit azerty"
+	testing "exit Benguerir"
+	testing "exit a"
+	testing "exit z"
+	testing "exit \"1\""
+	testing "exit \"2\""
+	testing "exit \"+102\""
+	testing "exit \"1230\""
+	testing "exit \"+++1230\""
+	testing "exit \"1\"23"
+	testing "exit \"2\"32\"32\""
+	testing "exit "'1337'""
+	testing "exit '1337'\"1337\"1337"
+	testing "exit +'1337'\"1337\"1337"
+	testing "exit -'1337'\"1337\"1337"
+	testing "exit 922337203685477"
+	testing "exit 922337203685477"
+	testing "exit -4"
+	testing "exit 1"
+	testing "exit -1"
+	testing "exit 1337"
+	testing "exit 0"
+	testing "exit --000"
+	testing "exit +++++++000"
+	testing "exit ++++3193912939"
+	testing "exit ---31232103012"
+	testing "exit \"Oh Darling\""
+	testing "exit echo"
+	testing "exit cd .."
+	testing "exit 0 0"
+	testing "exit 1337 1337 1337 1337 1337"
+	testing "exit echo Bensouda"cp
+	testing "exit exit exit exit exit exit"
 
 		printf "%s$EXPORT\n"
 
-	testing "env | grep \"_="\"
-	testing "export | grep \"SHLVL"\""
-	testing "export | grep \"OLDPWD"\""
-	testing "export | grep \"PWD"\"	
-	testing export $?
-	testing export TEST
-	testing export TEST=		
-	testing export TEST=123		
-	testing export ___TEST=123	
-	testing export --TEST=123	
-	testing export ""=""		
-	testing export ''=''		
-	testing export "="="="		
-	testing export '='='='		
-	testing export TE\\\ST=100	
-	testing export TE-ST=100	
-	testing export -TEST=100	
-	testing export TEST-=100	
-	testing export _TEST=100	
-	testing export TEST
-	testing export ==========	
-	testing export 1TEST=		
-	testing export TEST
-	testing export ""=""		
-	testing export TES=T=""		
-	testing export TE+S=T=""	
-	testing export TES\\\\T=123
-	testing export TES.T=123
-	testing export TES\\\$T=123
-	testing export TES\\\\T
-	testing export TES.T=123
-	testing export TES+T=123
-	testing export TES=T=123
-	testing export TES}T=123
-	testing export TES{T=123
-	testing export TES-T=123
-	testing export -TEST=123
-	testing export _TEST=123
-	testing export TES_T=123
-	testing export TEST_=123
-	testing export TE*ST=123
-	testing export TES#T=123
-	testing export TES@T=123
-	testing export TES!T=123
-	testing export TES$?T=123
-	testing export =============123
-	testing export +++++++=123
-	testing export ________=123
-	testing export export
-	testing export echo
-	testing export pwd
-	testing export cd
-	testing export export
-	testing export unset
-	testing export sudo
-	testing export TES^T=123
-	testing export TES!T=123
-	testing export TES\~T=123
-	testing export TEST+=100
+	export variable=randomtext
+	testing "export | grep variable" "export variable=randomtext"
+
+
+	export var_=0 var_=1 var_=2 var_=3
+	testing "export | grep var_" "export var_=0 var_=1 var_=2 var_=3"
+
+	export value=1 export value+=2 export value+=3 
+	testing "export | grep value" "export value=1 export value+=2 export value+=3"
+
+	testing "export | grep \"SHLVL"\"
+
+	testing "export | grep \"PWD"\"
+
+	export bensouda=
+	testing "export | grep bensouda" "export bensouda="
+
+	export Nothing
+	testing "export | grep Nothing" "export Nothing"
+
+	export export
+	testing "export | grep export" "export export"
+
+	export _____=abc
+	testing "export | grep _____" "export _____=abc"
+
+	export __ben_souda_=Herewego
+	testing "export | grep __ben_souda_" "export __ben_souda_=Herewego"
+
+	export Nothing=0=""
+	testing "export | grep Nothing" "export Nothing=0="""
+
+	export exitstatus$?=true
+	testing "export | grep exitstatus" "export exitstatus\$\?=true"
+
+	export val\ue=100
+	testing "export | grep val\ue" "export val\\\lue=100"
+
+	echo "Checking if you return the error as the bash does"
+
+	checking_errors "export --TEST=123" "invalid option"
+
+	checking_errors "export ""=""" "not a valid identifier"
+
+	checking_errors "export ''=''		" "not a valid identifier"
+
+	checking_errors "export "="="="		" "not a valid identifier"
+
+	checking_errors "export '='='='		" "not a valid identifier"
+
+	checking_errors "export TE-ST=100	" "not a valid identifier"
+
+	checking_errors "export TEST-=100	" "not a valid identifier"
+
+	checking_errors "export -TEST=100	" "invalid option"
+
+	checking_errors "export ==========abc	" "not a valid identifier"
+
+	checking_errors "export 1TEST=		" "not a valid identifier"
+
+	checking_errors "export TE+S=T=""" "not a valid identifier"
+
+	checking_errors "export me!me=123" "not a valid identifier"
+
+	checking_errors "export TES.T=123" "not a valid identifier"
+
+	checking_errors "export TES}T=123" "not a valid identifier"
+
+	checking_errors "export TES-T=123" "not a valid identifier"
+
+	checking_errors "export TE*ST=123" "not a valid identifier"
+
+	checking_errors "export TES#T=123" "not a valid identifier"
+
+	checking_errors "export TES@T=123" "not a valid identifier"
+
+	checking_errors "export +++++++=123" "not a valid identifier"
 
 	printf "%s$UNSET\n"
 
