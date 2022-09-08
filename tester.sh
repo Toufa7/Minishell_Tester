@@ -7,7 +7,7 @@
 
 
 # Put your Minishell's path down here without the last slash '/'
-MINISHELL_PATH=".."
+MINISHELL_PATH="./toufa7_minishell"
 
 
 RESET="\033[0m"
@@ -551,83 +551,38 @@ fi
 if [[ $1 = "-u" ]]; then
 {
 	printf "%s$UNSET\n"
+	
+	testing "export doesntexist=test \n unset doesntexist \n export | grep doesntexist"
+	testing "unset PWD \n export | grep PWD"
+	testing "unset PWD \n export | grep PWD"
+	testing "unset OLDPWD \N export | grep OLDPWD"
+	testing "unset PATH \n export | grep PATH"
+	testing "unset PATH \n export | grep PATH"
+	testing "unset PATH \n export | grep PATH"
+	testing "export TES\\\\T=test \n unset TES\\\\T \n export | grep TEST\\\\T"
+	testing "export _TEST=\"=\\| >> << | '' < > && ||\" \n unset _TEST \n export | grep _TEST"
+	testing "export TES_T=test \n unset TES_T \n export | grep TES_T"
+	testing "export TEST_=test \n unset TEST_ \n export | grep TEST_"
+	testing "export ______=test unset ______ \n export | grep ______"
+	testing "unset TERM_PROGRAM TERM SHELL TMPDIR Apple_PubSub_Socket_Render COLORFGBG TERM_PROGRAM_VERSION ZDOTDIR ORIGINAL_XDG_CURRENT_DESKTOP MallocNanoZone ITERM_PROFILE ITERM_SESSION_ID LC_TERMINAL  LC_TERMINAL_VERSION NVM_BIN NVM_CD_FLAGS NVM_DIR NVM_INC TERM_SESSION_ID ZSH USER COMMAND_MODE SSH_AUTH_SOCK __CF_USER_TEXT_ENCODING PAGER LSCOLORS PATH PWD LANG VSCODE_GIT_ASKPASS_EXTRA_ARGS XPC_FLAGS XPC_SERVICE_NAME VSCODE_INJECTION SHLVL HOME VSCODE_GIT_ASKPASS_MAIN LESS LOGNAME HOME_BREW VSCODE_GIT_IPC_HANDLE VSCODE_GIT_ASKPASS_NODE GIT_ASKPASS SECURITYSESSIONID COLORTERM \n unset USER \n export"
+	testing "export TES\$?T \n unset TES\$?T \n export | grep TES\$?T"
+	checking_errors "unset TES.T" "not a valid identifier"
+	checking_errors "unset TES+T" "not a valid identifier"
+	checking_errors "unset TES=T" "not a valid identifier"
+	checking_errors "unset TES}T" "not a valid identifier"
+	checking_errors "unset TES{T" "not a valid identifier"
+	checking_errors "unset TES-T" "not a valid identifier"
+	checking_errors "unset TE*ST" "not a valid identifier"
+	checking_errors "unset TES#T" "not a valid identifier"
+	checking_errors "unset TES@T" "not a valid identifier"
+	checking_errors "unset -TEST" "not a valid identifier"
+	checking_errors "unset ============" "not a valid identifier"
+	checking_errors "unset +++++++" "not a valid identifier"
+	checking_errors "unset TES^T" "not a valid identifier"
+	checking_errors "unset TES!T" "not a valid identifier"
+	checking_errors "unset TES\~T" "not a valid identifier"
 
-	# All Env Variables
-	# {
-	# 	TERM_PROGRAM
-	# 	TERM
-	# 	SHELL
-	# 	TMPDIR
-	# 	Apple_PubSub_Socket_Render
-	# 	TERM_PROGRAM_VERSION
-	# 	ZDOTDIR
-	# 	ORIGINAL_XDG_CURRENT_DESKTOP
-	# 	MallocNanoZone
-	# 	ZSH
-	# 	USER
-	# 	COMMAND_MODE
-	# 	SSH_AUTH_SOCK
-	# 	__CF_USER_TEXT_ENCODING
-	# 	PAGER
-	# 	LSCOLORS
-	# 	PATH
-	# 	PWD
-	# 	LANG
-	# 	VSCODE_GIT_ASKPASS_EXTRA_ARGS
-	# 	XPC_FLAGS
-	# 	XPC_SERVICE_NAME
-	# 	VSCODE_INJECTION
-	# 	SHLVL
-	# 	HOME
-	# 	VSCODE_GIT_ASKPASS_MAIN
-	# 	LESS
-	# 	LOGNAME
-	# 	HOME_BREW
-	# 	VSCODE_GIT_IPC_HANDLE
-	# 	VSCODE_GIT_ASKPASS_NODE
-	# 	GIT_ASKPASS
-	# 	SECURITYSESSIONID
-	# 	COLORTERM
-	# 	_
-	# }
-
-	testing unset doesntexist
-	testing unset PWD
-	testing unset PWD
-	testing unset OLDPWD
-	testing unset PATH
-	testing unset PATH
-	testing unset PATH
-	testing unset TES\\\\T
-	testing unset TES.T
-	testing unset TES+T
-	testing unset TES=T
-	testing unset TES}T
-	testing unset TES{T
-	testing unset TES-T
-	testing unset -TEST
-	testing unset _TEST
-	testing unset TES_T
-	testing unset TEST_
-	testing unset TE*ST
-	testing unset TES#T
-	testing unset TES@T
-	testing unset TES!T
-	testing unset TES$?T
-	testing unset ============
-	testing unset +++++++
-	testing unset ________
-	testing unset export
-	testing unset echo
-	testing unset pwd
-	testing unset cd
-	testing unset unset
-	testing unset sudo
-	testing unset TES^T
-	testing unset TES!T
-	testing unset TES\~T
-
-	grade 35
+	grade 29
 }
 fi
 
@@ -900,41 +855,41 @@ if [[ $1 = "-a" ]]; then
 
 	printf "%s$UNSET\n"
 
-	testing unset doesntexist
-	testing unset PWD
-	testing unset PWD
-	testing unset OLDPWD
-	testing unset PATH
-	testing unset PATH
-	testing unset PATH
-	testing unset TES\\\\T
-	testing unset TES.T
-	testing unset TES+T
-	testing unset TES=T
-	testing unset TES}T
-	testing unset TES{T
-	testing unset TES-T
-	testing unset -TEST
-	testing unset _TEST
-	testing unset TES_T
-	testing unset TEST_
-	testing unset TE*ST
-	testing unset TES#T
-	testing unset TES@T
-	testing unset TES!T
-	testing unset TES$?T
-	testing unset ============
-	testing unset +++++++
-	testing unset ________
-	testing unset export
-	testing unset echo
-	testing unset pwd
-	testing unset cd
-	testing unset unset
-	testing unset sudo
-	testing unset TES^T
-	testing unset TES!T
-	testing unset TES\~T
+	testing "export doesntexist \n unset doesntexist \n grep doesntexist"
+	# testing "unset PWD"
+	# testing "unset PWD"
+	# testing "unset OLDPWD"
+	# testing "unset PATH"
+	# testing "unset PATH"
+	# testing "unset PATH"
+	# testing "unset TES\\\\T"
+	# testing "unset TES.T"
+	# testing "unset TES+T"
+	# testing "unset TES=T"
+	# testing "unset TES}T"
+	# testing "unset TES{T"
+	# testing "unset TES-T"
+	# testing "unset -TEST"
+	# testing "unset _TEST"
+	# testing "unset TES_T"
+	# testing "unset TEST_"
+	# testing "unset TE*ST"
+	# testing "unset TES#T"
+	# testing "unset TES@T"
+	# testing "unset TES!T"
+	# testing "unset TES$?T"
+	# testing "unset ============"
+	# testing "unset +++++++"
+	# testing "unset ________"
+	# testing "unset export"
+	# testing "unset echo"
+	# testing "unset pwd"
+	# testing "unset cd"
+	# testing "unset unset"
+	# testing "unset sudo"
+	# testing "unset TES^T"
+	# testing "unset TES!T"
+	# testing "unset TES\~T"
 
 
 	printf "%s$CD\n"
