@@ -6,8 +6,9 @@
 ###################################################################
 
 
-# Put your Minishell's path down here
+# Put your Minishell's path down here without the last slash '/'
 MINISHELL_PATH=".."
+
 
 RESET="\033[0m"
 BLACK="\033[30m"
@@ -99,10 +100,11 @@ function	help()
 	echo "\033[1;37m	Minishell Tester" "${NORMAL} -- A Simple Minishell tester Good Luck 🤞 "
 	echo ""
 	echo '\033[1mSYNOPSIS\033[0m'
-	echo "\033[1;37m	./tester.sh  [-h|a|E|e|p|u|x]"
+	echo "\033[1;37m	./tester.sh  [-h|--help|a|E|e|p|u|x]"
 	echo "${NORMAL}"
-	echo '\033[1mDESCRIPTION\033[0m'
-	echo ""
+	echo '\033[1mDESCRIPTION\033[0m\n'
+	echo "	${GREEN}[OK]${RESET} Means that your output and the exist_status are similar to the bash
+	${RED}[KO]${RESET} Means one of your output or the exist_status or both are wrong to the bash\n"
 	echo "${NORMAL} The following options are available:"
 	echo "\033[1;37m	-h or --help	${NORMAL}Help"
 	echo "\033[1;37m	-a		${NORMAL}All"
@@ -111,10 +113,8 @@ function	help()
 	echo "\033[1;37m	-e		${NORMAL}Export"
 	echo "\033[1;37m	-p		${NORMAL}Pipes"
 	echo "\033[1;37m	-u		${NORMAL}Unset"
-	echo "\033[1;37m	-x		${NORMAL}Exit"
+	echo "\033[1;37m	-x		${NORMAL}Exit\n"
 	# echo "\033[1;37m	-y		${NORMAL}Checklist (Page Correction)"
-	echo "\n"
-	echo "BSD	0.1			Gettimeofday		  BSD	0.1"
 }
 
 function ProgressBar
