@@ -247,7 +247,7 @@ function checking_errors()
 	BASH=$(echo $1 | bash 2>&1)
 	BASH_EXIT_STATUS=$?
 
-	error=$1
+	error=$2
 	if [[ "$MINISHELL" == *"$error"* ]] && [[ "$BASH" == *"$error"* ]] && [[ "$MINISHELL_EXIT_STATUS" == "$BASH_EXIT_STATUS" ]] ;
 	then
 	{
