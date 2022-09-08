@@ -1,13 +1,13 @@
 # Minishell_Tester
 
-A simple Minishell tester, it checks your output and your exist status are similar to the bash or not also it checks it compare your return errors else it returns where's your wrong see :
+A simple Minishell tester, it checks your output and your exit status are similar to the bash or not also it checks it compare your return errors else it returns where's your wrong see :
 
     ./tester.sh --help
 
 
-$$\textcolor{Green}{\text{[OK]  }}{\text{Means that your output and the exist status are similar to the bash}}\textcolor{yellow}{\text{}}$$
+$$\textcolor{Green}{\text{[OK]  }}{\text{Means that your output and the exit status are similar to the bash}}\textcolor{yellow}{\text{}}$$
 
-$$\textcolor{Red}{\text{[KO]  }}{\text{Means one of your output or the exist status or both are wrong to the bash}}\textcolor{yellow}{\text{}}$$
+$$\textcolor{Red}{\text{[KO]  }}{\text{Means one of your output or the exit status or both are wrong to the bash}}\textcolor{yellow}{\text{}}$$
 
 
 How To Use a Minishell_Tester : 
