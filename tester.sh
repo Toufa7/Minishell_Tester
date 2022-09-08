@@ -7,7 +7,7 @@
 
 
 # Put your Minishell's path down here without the last slash '/'
-MINISHELL_PATH="./toufa7_minishell"
+MINISHELL_PATH=".."
 
 
 RESET="\033[0m"
