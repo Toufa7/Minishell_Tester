@@ -62,5 +62,4 @@ chmod +x tester.sh
 
 <img src="Ress/demonstration.gif" width="600" height="700" />
 
-
 🤝 Feel free to use it, contribute and add your crazy tests 
