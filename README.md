@@ -1,5 +1,7 @@
 # Minishell_Tester
 
+## NB: Works on macOS only, not Ubuntu. I'll work on it later, or you are welcome to contribute as well :)
+
 A simple Minishell tester, it checks your output and your exit status are similar to the bash or not also it checks it compare your return errors else it returns where's your wrong see :
 
     ./tester.sh --help
